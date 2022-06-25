@@ -12,21 +12,21 @@
 
 <body class="m-0 p-0">
 
-</body>
-
-<div class="messages">
-    {% if messages %}
-    <div class="">
-        {% for message in messages %}
-        <p{% if message.tags %} class="text-center alert alert-{{ message.tags  }}" {% endif %}>
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:
-            {% endif %}
-            {{ message }}
-            </p>
-            {% endfor %}
-            </ul>
-            {% endif %}
+    <div class="messages">
+        {% if messages %}
+        <div class="">
+            {% for message in messages %}
+            <p{% if message.tags %} class="text-center alert alert-{{ message.tags  }}" {% endif %}>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important:
+                {% endif %}
+                {{ message }}
+                </p>
+                {% endfor %}
+                </ul>
+                {% endif %}
+        </div>
     </div>
+
 
     <div class="container">
         <div class="row">
@@ -40,57 +40,32 @@
                 </form>
 
             </div>
-        </div>
-    </div>
 
-
-
-
-
-
-    <!-- {% if messages %}
-    {% for message in messages %}
-    {{ message }} {% endfor %}
-    {% endif %}
-    <br /> -->
-    <div class="col-md-6 mt-0 mt-md-5">
-        <div class="container">
-
-            {% for city in city_data %}
-
-            <div class="row">
-                <div class="col-6">
-                    <h3>
-                        {{ city.city }}
-                    </h3>
-
-                    <span>
-                        {{ city.temp }}
-                        <span>&#8451;</span>
-
-                    </span>
-
-                    <div class="col-6">
-                        <h6>{{ city.desc }}</h6>
+            <div class="col-md-6 mt-0 mt-md-5">
+                <div class="container">
+                    {% for city in city_data %}
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>
+                                {{ city.city }}
+                            </h3>
+                            <span>
+                                {{ city.temp }}
+                                <span>&#8451;</span>
+                            </span>
+                        </div>
+                        <div class="col-6">
+                            <h6>{{ city.desc }}</h6>
+                            <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Icon" />
+                            <a href="{% url 'delete' city.city.id %}" class="btn btn-danger">Delete</a>
+                        </div>
                     </div>
-
-                    <div width="50px">
-
-                        <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="Icon" />
-
-                    </div>
-                    <button>
-                        <a href="{% url 'delete' city.city.id %}" class="btn btn-danger">Delete</a>
-                    </button>
                     <hr />
                     {% endfor %}
-
                 </div>
-
             </div>
-
         </div>
     </div>
-
+</body>
 
 </html>
